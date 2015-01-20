@@ -1,7 +1,7 @@
 {
   "name": "deep-rename-keys",
-  "description": "Recursively rename the keys of an object.",
-  "version": "0.1.0",
+  "description": "Recursively rename the keys in an object.",
+  "version": "0.1.1",
   "homepage": "https://github.com/jonschlinkert/deep-rename-keys",
   "author": {
     "name": "Jon Schlinkert",
@@ -25,12 +25,21 @@
   "scripts": {
     "test": "mocha -R spec"
   },
-  "devDependencies": {
-    "mocha": "*",
-    "should": "*"
-  },
-  "keywords": [],
   "dependencies": {
+    "kind-of": "^1.0.0",
     "rename-keys": "^1.1.0"
-  }
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "keywords": [
+    "keys",
+    "nested",
+    "object",
+    "properties",
+    "props",
+    "recurse",
+    "recursively",
+    "rename"
+  ]
 }
