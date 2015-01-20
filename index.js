@@ -25,11 +25,11 @@ function renameDeep(obj, cb) {
   obj = rename(obj, cb);
   var res = {};
 
-  for (key in obj) {
+  for (var key in obj) {
     if (obj.hasOwnProperty(key)) {
       var val = obj[key];
       if (typeOf(val) === 'object') {
-        res[key] = renameDeep(val);
+        res[key] = renameDeep(val, cb);
       } else {
         res[key] = val;
       }
