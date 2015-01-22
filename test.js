@@ -27,3 +27,13 @@ it('should rename nested keys.', function () {
   });
   assert.deepEqual(bar, {zzz: {zzz: {zzz: 'b'}}});
 });
+
+it('should rename nested keys with array.', function () {
+    var foo = rename({a: 'b', c: 'd', e: [{c: 'f'}, {c: 'h'}]}, function(key) {
+        if (key === 'c') {
+            return 'zzz';
+        }
+        return key;
+    });
+    assert.deepEqual(foo, {a: 'b', zzz: 'd', e: [{zzz: 'f'}, {zzz: 'h'}]});
+});

@@ -8,7 +8,6 @@
 'use strict';
 
 var typeOf = require('kind-of');
-var rename = require('rename-keys');
 
 /**
  * Expose `renameDeep`
@@ -17,21 +16,39 @@ var rename = require('rename-keys');
 module.exports = renameDeep;
 
 
-function renameDeep(obj, cb) {
+function renameDeep(obj, fn) {
   if (typeof obj === 'undefined') {
     throw new Error('deep-rename-keys expects an object');
   }
 
-  obj = rename(obj, cb);
-  var res = {};
+  var res = (typeOf(obj) === 'array') ? [] : {};
 
   for (var key in obj) {
     if (obj.hasOwnProperty(key)) {
+      // Call function with key & ancestors
+      var args = [].slice.call(arguments, 2);
+
+      var prop = key;
       var val = obj[key];
-      if (typeOf(val) === 'object') {
-        res[key] = renameDeep(val, cb);
+      if (typeOf(obj) === 'array') {
+        // use index as key
+        prop = +key;
+        args.unshift(prop);
+      }
+      else {
+        args.unshift(key);
+        prop = fn.apply(null, args) || key;
+      }
+
+      if (typeOf(val) === 'object' || typeOf(val) === 'array') {
+        // copy of args
+        var recurArgs = [].slice.call(args, 0);
+        // prepent val and function into args
+        recurArgs.unshift(fn);
+        recurArgs.unshift(val);
+        res[prop] = renameDeep.apply(null, recurArgs);
       } else {
-        res[key] = val;
+        res[prop] = val;
       }
     }
   }
