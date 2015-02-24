@@ -22,13 +22,19 @@ function renameDeep(obj, cb) {
     throw new Error('deep-rename-keys expects an object');
   }
 
-  obj = rename(obj, cb);
-  var res = {};
+  var res;
+  if(typeOf(obj) === 'array')
+    res = [];
+  else
+  {
+    obj = rename(obj, cb);
+    res = {};
+  }
 
   for (var key in obj) {
     if (obj.hasOwnProperty(key)) {
       var val = obj[key];
-      if (typeOf(val) === 'object') {
+      if (typeOf(val) === 'object' || typeOf(val) === 'array') {
         res[key] = renameDeep(val, cb);
       } else {
         res[key] = val;
