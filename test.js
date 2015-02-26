@@ -28,7 +28,7 @@ it('should rename nested keys.', function () {
   assert.deepEqual(bar, {zzz: {zzz: {zzz: 'b'}}});
 });
 
-it('should rename nested keys in subobjects of arrays.', function () {
+it('should rename keys of objects nested in arrays.', function () {
   var foo = rename([{a:'b',c:'d',e:[{c:'f',a:{c:'a'}},{c:'f',a:{c:'a'}},{c:'f',a:{c:'a'}}]},{a:'b',c:'d',e:[{c:'f',a:{c:'a'}},{c:'f',a:{c:'a'}},{c:'f',a:{c:'a'}}]}], function(key) {
     if (key === 'c') {
       return 'zzz';
