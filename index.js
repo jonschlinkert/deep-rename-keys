@@ -14,19 +14,15 @@ var rename = require('rename-keys');
  * Expose `renameDeep`
  */
 
-module.exports = renameDeep;
+module.exports = function renameDeep(obj, cb) {
+  var type = typeOf(obj);
 
-
-function renameDeep(obj, cb) {
-  if (typeof obj === 'undefined') {
-    throw new Error('deep-rename-keys expects an object');
+  if (type !== 'object' && type !== 'array') {
+    throw new Error('expected an object');
   }
 
-  var res;
-  if(typeOf(obj) === 'array')
-    res = [];
-  else
-  {
+  var res = [];
+  if (type === 'object') {
     obj = rename(obj, cb);
     res = {};
   }
@@ -42,4 +38,4 @@ function renameDeep(obj, cb) {
     }
   }
   return res;
-}
+};
