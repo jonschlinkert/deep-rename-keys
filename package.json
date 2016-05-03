@@ -20,11 +20,12 @@
     "test": "mocha"
   },
   "dependencies": {
-    "kind-of": "^1.0.0",
-    "rename-keys": "^1.1.0"
+    "kind-of": "^3.0.2",
+    "rename-keys": "^1.1.2"
   },
   "devDependencies": {
-    "mocha": "*"
+    "gulp-format-md": "^0.1.9",
+    "mocha": "^2.4.5"
   },
   "keywords": [
     "keys",
@@ -35,5 +36,28 @@
     "recurse",
     "recursively",
     "rename"
-  ]
+  ],
+  "verb": {
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "reflinks": [
+      "verb"
+    ],
+    "related": {
+      "list": [
+        "rename-keys",
+        "kind-of",
+        "isobject"
+      ]
+    },
+    "toc": false,
+    "layout": "default",
+    "lint": {
+      "reflinks": true
+    },
+    "tasks": [
+      "readme"
+    ]
+  }
 }
