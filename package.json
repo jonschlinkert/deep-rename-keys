@@ -46,9 +46,9 @@
     ],
     "related": {
       "list": [
-        "rename-keys",
+        "isobject",
         "kind-of",
-        "isobject"
+        "rename-keys"
       ]
     },
     "toc": false,
